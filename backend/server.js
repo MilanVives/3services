@@ -8,12 +8,12 @@ app.use(cors())
 const port = process.env.PORT || 3000 
 
 function connectDB(){
-mongoose.connect('mongodb://127.0.0.1:27017/test')
-    .then(() => console.log('Connected to MongoDB!'))
-    .catch(err => console.error("Error connecting to DB :", err))
+  //mongoose.connect('mongodb://127.0.0.1:27017/test')
+  //mongoose.connect('mongodb://mongodb:27017/fooddb')
+  mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/foodsdb')
+      .then(() => console.log('Connected to MongoDB!'))
+      .catch(err => console.error("Error connecting to DB :", err))
 }
-// TimeOut for docker-compose to give mongo container time to start up
-setTimeout(connectDB,3000)
 
 // Define Food Schema
 const foodSchema = new mongoose.Schema({
@@ -47,10 +47,9 @@ async function seedFoods() {
   
 }
 
-// Run the seed function
-seedFoods();
-
-
+// TimeOut for docker-compose to give mongo container time to start up
+setTimeout(connectDB,1000)
+setTimeout(seedFoods,1500)
 
 app.get("/", async (req, res) => {
   try {
@@ -62,6 +61,6 @@ app.get("/", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Foods API listening on port ${port}`)
 })
 

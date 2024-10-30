@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    ports: 
+      - 3000:3000
+    environment:
+      - PORT=3000
+    depends_on:
+      - mongodb
+    restart: always
+  frontend:
+    build: ./frontend
+    ports: 
+      - 8080:80
+    restart: always
+  mongodb:
+    image: mongo 
+    volumes:
+      - dbdata:/data/db
+    restart: always
+volumes:
+  dbdata:
