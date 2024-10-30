@@ -31,7 +31,7 @@ let li, ul;
       for ( let i of json) {
       ul = document.getElementById("list");
       li = document.createElement("li");
-      li.innerHTML = i;
+      li.innerHTML = i.color + " " + i.name;
       ul.appendChild(li);
     }
     console.log("values:", ul)
