@@ -23,3 +23,18 @@ Secrets and Variables > Repository Secrets > New Repository secret
 ![GitHub New Repository Secret](./images/ghnewreposecret.png)
 ![GitHub Create Repository Secret](./images/ghcreatesecret.png)
 ![GitHub Repository Secret Created](./images/ghsecretcreated.png)
+
+### Project Directory structure
+
+.
+|-- Readme.md
+|-- backend
+|   |-- Dockerfile
+|   |-- node_modules
+|   |-- package-lock.json
+|   |-- package.json
+|   `-- server.js
+|-- compose.yml
+|-- frontend
+|   |-- Dockerfile
+|   `-- index.html
