@@ -1,0 +1,25 @@
+name: Build and Publish image to Docker Hub
+on:
+  #[workflow-dispatch] # manual run via github actions
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/'
+      - 'frontend/'
+
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build image
+        run: |
+          docker build ./backend/ -t dimilan/3sdevops-backend:latest
+          docker build ./frontend/ -t dimilan/3sdevops-frontend:latest
+      - name: push image to docker hub
+        run: |
+          docker login -u dimilan -p ${{ secrets.DOCKERHUBTOKEN }}
+          docker push dimilan/3sdevops-backend:latest
+          docker push dimilan/3sdevops-frontend:latest
