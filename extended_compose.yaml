@@ -10,6 +10,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    restart:
+      - always
 
   # Node.js Backend Service
   backend:
@@ -24,6 +26,8 @@ services:
       - mongodb
     networks:
       - app-network
+    restart:
+      - always
 
   # HTML/JavaScript Frontend Service
   frontend:
@@ -36,6 +40,8 @@ services:
       - backend
     networks:
       - app-network
+    restart:
+      - always
 
 # Named Volumes
 volumes:
