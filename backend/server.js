@@ -7,15 +7,7 @@ app.use(cors())
 
 const port = process.env.PORT || 3000 
 
-/*function connectDB(){
-  //mongoose.connect('mongodb://127.0.0.1:27017/test')
-  //mongoose.connect('mongodb://mongodb:27017/fooddb')
-  mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/foodsdb')
-      .then(() => console.log('Connected to MongoDB!'))
-      .catch(err => console.error("Error connecting to DB :", err))
-} */
-
-
+// DB connection, repeat until connection is established since Mongo caontainer might start after the backend one
 let connectWithRetry = function() {
   return mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/foodsdb')
       .then(() => console.log('Connected to MongoDB!'))
@@ -58,8 +50,10 @@ async function seedFoods() {
   
 }
 
+//Wait 1.5 seconds and seed the Mongo DB zith the placeholder foods
 setTimeout(seedFoods,1500)
 
+// the / endpoint
 app.get("/", async (req, res) => {
   try {
     const foods = await Food.find();
@@ -69,9 +63,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-
-
-
+//Start Node server and listen on port
 app.listen(port, () => {
   console.log(`Foods API listening on port ${port}`)
 })
