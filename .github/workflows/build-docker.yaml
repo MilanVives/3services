@@ -3,7 +3,7 @@ on:
   #[workflow-dispatch] # manual run via github actions
   push:
     branches:
-      - main
+      - ci-cd
     paths:
       - 'backend/'
       - 'frontend/'
