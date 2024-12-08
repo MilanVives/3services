@@ -14,12 +14,13 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: build image
+      - name: Build the backend and frontend Docker image
+        #run: docker build -t dimilan/3sdevops-backend:latest ./backend
         run: |
-          docker build ./backend/ -t dimilan/3sdevops-backend:latest
-          docker build ./frontend/ -t dimilan/3sdevops-frontend:latest
-      - name: push image to docker hub
+          docker build -t dimilan/3sdevops-backend:latest ./backend 
+          docker build -t dimilan/3sdevops-frontend:latest ./frontend
+      - name: push images to docker hub
         run: |
-          docker login -u dimilan -p ${{ secrets.DOCKERHUBTOKEN }}
+          echo ${{ secrets.DOCKERHUBTOKEN }} | docker login -u dimilan --password-stdin
           docker push dimilan/3sdevops-backend:latest
           docker push dimilan/3sdevops-frontend:latest

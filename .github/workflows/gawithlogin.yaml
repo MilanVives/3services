@@ -1,0 +1,28 @@
+name: Docker Image CI With Docker login-action
+
+on:
+  [workflow_dispatch]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the backend Docker image
+      #run: docker build -t dimilan/3sdevops-backend:latest ./backend
+      run: |
+        docker build -t dimilan/3sdevops-backend:latest ./backend 
+        docker build -t dimilan/3sdevops-frontend:latest ./frontend
+    -
+      name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: dimilan
+        password: ${{ secrets.DOCKERHUBTOKEN }}
+    - name: push image to docker hub
+      run: |
+        docker push dimilan/3sdevops-backend:latest
+        docker push dimilan/3sdevops-frontend:latest
