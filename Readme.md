@@ -45,8 +45,6 @@ One with the name DOCKERHUBTOKEN and the value dckr_pat_... from DockerHub https
 Workflow syntax:
 https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
 
-
-
 Actions Triggers: 
 https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
 
