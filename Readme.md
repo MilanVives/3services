@@ -20,12 +20,14 @@ Create Docker Hub Token (https://app.docker.com/settings/personal-access-tokens/
 Add DH Token to GA via Repository Settings on Github
 Secrets and Variables > Repository Secrets > New Repository secret
 
+One with the name DOCKERHUBTOKEN and the value dckr_pat_... from DockerHub https://app.docker.com/settings/personal-access-tokens/
+
 ![GitHub New Repository Secret](./images/ghnewreposecret.png)
 ![GitHub Create Repository Secret](./images/ghcreatesecret.png)
 ![GitHub Repository Secret Created](./images/ghsecretcreated.png)
 
 ### Project Directory structure
-
+```
 .
 |-- Readme.md
 |-- backend
@@ -38,3 +40,19 @@ Secrets and Variables > Repository Secrets > New Repository secret
 |-- frontend
 |   |-- Dockerfile
 |   `-- index.html
+```
+
+Workflow syntax:
+https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+
+
+
+Actions Triggers: 
+https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
+
+Conditions:
+https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/using-conditions-to-control-job-execution
+
+Runners (environments):
+https://docs.github.com/en/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job
+

@@ -1,6 +1,6 @@
 name: Build and Publish image to Docker Hub
 on:
-  #[workflow-dispatch] # manual run via github actions
+  #[workflow_dispatch] # manual run via github actions
   push:
     branches:
       - ci-cd
